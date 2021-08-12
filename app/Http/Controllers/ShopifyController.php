@@ -13,7 +13,6 @@ class ShopifyController extends Controller
 
     public function install(Request $request){
         $response = install($_GET['shop']);
-        // dd($response);
         return redirect($response);
     }
 

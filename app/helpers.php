@@ -6,7 +6,7 @@ function install($shop){
 // Set variables for our request
 $api_key = "e03bc9dbea81f5e42ec47cef977cea01";
 $scopes = "read_orders,write_products";
-$redirect_uri = "https://7e5f9ea300f2.ngrok.io/authenticate";
+$redirect_uri = "https://0d2302b92d64.ngrok.io/authenticate";
 
 // Build install/approval URL to redirect to
 $install_url = "https://" . $shop . "/admin/oauth/authorize?client_id=" . $api_key . "&scope=" . $scopes . "&redirect_uri=" . urlencode($redirect_uri);
@@ -115,7 +115,7 @@ $result = json_decode($result, true);
 $access_token = $result['access_token'];
 
 // Show the access token (don't do this in production!)
-echo $access_token;
+return $access_token;
 
 } else {
 // Someone is trying to be shady!
