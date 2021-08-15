@@ -17,14 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/install', [App\Http\Controllers\ShopifyController::class, 'install'])->name('install');
 Route::get('/authenticate', [App\Http\Controllers\ShopifyController::class, 'authenticate'])->name('authenticate');
-
-Route::group(['prefix'=>'/admin','as'=>'admin.'], function(){
-    Route::get('/products', [App\Http\Controllers\ProductController::class, 'getProducts'])->name('install');
-    Route::get('/products/listed', [App\Http\Controllers\ProductController::class, 'listedProducts'])->name('listed');
-    Route::get('/products/imported', [App\Http\Controllers\ProductController::class, 'importedProducts'])->name('imported');
-});
+Route::post('/createDiscount', [App\Http\Controllers\ShopifyController::class, 'createDiscount'])->name('createDiscount')
+->middleware(['cors']);

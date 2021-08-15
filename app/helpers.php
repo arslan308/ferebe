@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Auth;
 
 function install($shop){
 // Set variables for our request
-$api_key = "e03bc9dbea81f5e42ec47cef977cea01";
-$scopes = "read_orders,write_products";
-$redirect_uri = "https://0d2302b92d64.ngrok.io/authenticate";
+$api_key = "909404141eb378ff62546750ee56d671";
+$scopes = 'write_products,write_script_tags,write_products,write_discounts,write_checkouts,write_orders,read_product_listings,write_customers,write_price_rules,unauthenticated_write_checkouts,write_draft_orders';
+$redirect_uri = "https://privateferebe.com/authenticate";
 
 // Build install/approval URL to redirect to
 $install_url = "https://" . $shop . "/admin/oauth/authorize?client_id=" . $api_key . "&scope=" . $scopes . "&redirect_uri=" . urlencode($redirect_uri);
@@ -79,8 +79,8 @@ if ($error_number) {
 }
 
 function generate_token($params){
-$api_key = "e03bc9dbea81f5e42ec47cef977cea01";
-$shared_secret = "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";
+$api_key = "909404141eb378ff62546750ee56d671";
+$shared_secret = "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";
 $hmac = $params['hmac']; // Retrieve HMAC request parameter
 
 $params = array_diff_key($params, array('hmac' => '')); // Remove hmac from params
@@ -122,3 +122,21 @@ return $access_token;
 die('This request is NOT from Shopify!');
 }
 }
+
+if (!function_exists('RouteInArray')){
+    function RouteInArray($route,$route_array)
+    {
+        if (in_array($route,$route_array)){
+            return 'active';
+        }
+    }
+}
+if (!function_exists('menu_open')){
+    function menu_open($route,$route_array)
+    {
+        if (in_array($route,$route_array)){
+            return 'opens';
+        }
+    }
+}
+
